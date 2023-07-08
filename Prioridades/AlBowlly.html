@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .ibagnes {
+            width: 10%;
+            /*height: 540px;
+            border-color: black;*/
+            border: 1px black solid;
+            background-color: gainsboro;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            cursor: pointer;
+            opacity: 0.0;
+        }
+
+        .hover {
+            opacity: 1.0;
+        }
+
+        /*.wraper{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .img{
+            width: 20%;
+        }
+
+        img{
+            max-width: 100%;
+        }*/
+    </style>
+    <title>Jogo da Memória</title>
+</head>
+<body>
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+
+    <div class = "ibagnes">
+        <img src = "">
+    </div>
+</body>
+<script>
+    var imagens = ["Asirel2.png", "Chara3.png", "Cooki2.png", "Gina.png", "Kent2.png", 
+    "Lobo azul.png", "Luiz2.png", "matt.png", "Rerandom.jpg", "Ryan.png", "RynRose2.png",
+    "Shin.png", "Steve2.png", "Thais3.png", "Wes2.png"]; 
+    var verificador = []; //vai servir para o imagens[K].onclick
+
+    //congela o curso do código, deixando as demais funções funcionando 
+    function sleep(ms) { 
+        return new Promise(
+        resolve => setTimeout(resolve, ms)
+        );
+    }
+
+
+    //vai fornecer um nº sorteado, incluindo o próprio minimo e maximo
+    function Rerandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+
+
+    //Vai embaralhar as imagens em cada div
+    function Embaralhar () 
+    {
+    /*
+    Esse loop for in vai clonar o array imagens. Isso é importante pois são 30 divs
+    para 15 imagens (se é um jogo da memória, tem que ter uma duplicata para cada 
+    imagem). Por isso, vamos precisar clonar o array duas vezes nessa função.
+    */
+    let Inter = []; 
+    for (let F in imagens)
+    {
+        Inter[F] = imagens[F];
+    }
+
+    for (var i = 0; i < 30; i++) 
+    {
+        let Random = Rerandom(0, Inter.length-1); //Vai sortear o nº
+        //console.log(Random);
+
+        /*
+        Nas primeiras 14 vezes (começa no 0) vai fazer as atribuições aleatórias. Na 
+        15, vai fazer a atribuição e reclonar o array imagens.
+        */
+        if (i < 15)
+        {
+        document.images[i].src = Inter[Random]; //Atribui
+        Inter.splice(Random, 1); //Retira a imagem sorteada do array, para não repetir
+        
+        if (Inter.length == 0) 
+        {
+            //Reclona o array imagens
+            for (let F in imagens)
+            {
+            Inter[F] = imagens[F];
+            }
+        }
+        }
+        else //As 15 vezes restantes
+        {
+        document.images[i].src = Inter[Random];
+        Inter.splice(Random, 1);
+        }
+        //console.log(imagens.length);
+    }
+    }
+
+    async function Analise () //prototipo do images[K].onclick, inutilizado por a funcao
+    {                         //nao reconhecer "this" como "images[K]" + outros ajustes
+    verificador.push(document.images[K]);
+    document.images[K].style.opacity = "1.0";
+    if (verificador.length == 2)
+    {
+        if (verificador[0].src == verificador[1].src)
+        {
+        verificador.splice(0,2);
+        }
+        else
+        {
+        sleep(2000);
+        verificador[0, 1].style.opacity = "0.0";
+        verificador.splice(0,2);
+        }
+    }
+    }
+
+    function teste () { //Quando eu finalmente notei que o "this" não é reconhecido
+    this.style.opacity = "1.0";
+    }
+
+    function Moonside(milliseconds) {
+    let date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+    }
+
+
+    //Aqui são as funções que serão iniciadas assim que a página carregar
+    document.onload = Embaralhar();
+
+    for (let K in document.images)
+    {
+    document.images[K].onclick = async function () 
+    {
+        /*
+        Essa primeira parte antes do if else é executada toda vez que é clicado uma img
+        (ava é mermo?). Ela adiciona a imagem clicada ao array verificador e depois faz
+        a imagem aparecer.
+        */
+        verificador.push(this); 
+        //console.log(verificador.length);
+        this.style.opacity = "1.0";
+
+        /*
+        No primeiro bloco, vai ser verificado se as imagens clicadas são as mesmas e se
+        as divs são diferentes (ou seja, se o cara acertou). No segundo, tentei fazer
+        um anticheat caso o cara decida clicar insanamente nas imagens, seja a mesma ou
+        diferentes (o que não deu certo). No terceiro, é caso o cara tenha tentado e 
+        errado normalmente.
+        */
+        if (verificador.length == 2)
+        {
+        if (verificador[0].src == verificador[1].src && verificador[0] != verificador[1])
+        {
+            verificador = []; //zera o array
+            //Moonside(1000);
+        }
+        else if (verificador.length > 2)
+        {
+            for (let L in verificador) //Tenta setar a opacidade de todas as imgs clicadas
+            {
+            verificador[L].style.opacity = "0.0";
+            }
+            verificador = [];
+        }
+        else
+        {
+            await sleep(1000); //Mostra por 1 segundo a imagem selecionada
+            verificador[0].style.opacity = "0.0"; //Esconde as 2 imgs novamente
+            verificador[1].style.opacity = "0.0";
+            verificador = [];
+        }
+        }
+    };
+    }
+
+
+    /*{
+    document.images[K].onmouseover = function () {
+        document.images[K].style.opacity = "1.0";
+    }
+
+    document.images[K].onmouseout = function () {
+        document.images[K].style.opacity = "0.0";
+    }
+    }*/
+</script>
+</html>
